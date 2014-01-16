@@ -24,10 +24,16 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.bodyParser());
 app.use(express.cookieParser('qbitStore493hfls#423fb3@23%$^%87%noi234buv2'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
+// handleError
+function handleError(e) {
+	return res.send(404, e);
+}
 
 // Config
 app.set('perpage', 10); // pagination - number of items per page

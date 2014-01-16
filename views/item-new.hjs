@@ -1,0 +1,8 @@
+<div id="item">
+	<form action="" method="post">
+		<p><label><b>Name:</b> <input type="text" name="item[name]" value=""></label></p>
+		<p><label><b>Cost:</b> <input type="text" name="item[cost]" value=""></label></p>
+		<p><label><b>Description:</b> <textarea name="item[description]"></textarea></label></p>
+		<p><label><input type="submit" name="submit" value="Save"></label></p>
+	</form>
+</div>

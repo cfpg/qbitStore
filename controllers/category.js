@@ -6,7 +6,7 @@ module.exports.controller = function(app) {
 /**
  * a home page route
  */
-  app.get('/:category', function(req, res) {
+  app.get('/category/:cat', function(req, res) {
       // any logic goes here
       res.send("category");
   });
@@ -14,7 +14,7 @@ module.exports.controller = function(app) {
 /**
  * About page route
  */
-  app.get('/:category/:p', function(req, res) {
+  app.get('/category/:category/:p', function(req, res) {
       // any logic goes here
       res.send('users/login');
   });
