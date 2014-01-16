@@ -4,6 +4,8 @@
 	"directory": "node_modules",
   "dependencies": {
     "requirejs": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "underscore-amd": "latest",
+    "backbone-amd": "latest"
   }
 }
