@@ -1,0 +1,10 @@
+{
+  "name": "qbitStore",
+  "version": "1.0.0",
+	"directory": "node_modules",
+  "dependencies": {
+    "requirejs": "latest",
+    "jquery": "latest",
+		"hogan": "*",
+  }
+}
