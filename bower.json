@@ -1,7 +1,6 @@
 {
   "name": "qbitStore",
   "version": "0.0.1",
-	"directory": "app/scripts/vendor",
   "dependencies": {
     "requirejs": "latest",
     "jquery": "latest",
