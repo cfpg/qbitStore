@@ -8,6 +8,6 @@ var schemaUser = new Schema({
 	cart: {type: Schema.Types.ObjectId, ref: 'Cart'}
 });
 
-var User = mongoose.model('User', schemaUser);
+var UserModel = mongoose.model('User', schemaUser);
 
-module.exports = User;
+module.exports = UserModel;

@@ -9,6 +9,6 @@ var schemaItem = new Schema({
 	added: {type: Date, default: Date.now}
 });
 
-var Item = mongoose.model('Item', schemaItem);
+var ItemModel = mongoose.model('Item', schemaItem);
 
-module.exports = Item;
+module.exports = ItemModel;

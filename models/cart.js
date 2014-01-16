@@ -6,6 +6,6 @@ var schemaCart = new Schema({
 	user: {type: Schema.Types.ObjectId, ref: 'User'},
 	items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
 });
-var Cart = mongoose.model('Cart', schemaCart);
+var CartModel = mongoose.model('Cart', schemaCart);
 
-module.exports = Cart;
+module.exports = CartModel;

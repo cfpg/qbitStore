@@ -6,6 +6,6 @@ var schemaCategory = new Schema({
 	items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
 });
 
-var Category = mongoose.model('Category', schemaCategory);
+var CategoryModel = mongoose.model('Category', schemaCategory);
 
-module.exports = Category;
+module.exports = CategoryModel;

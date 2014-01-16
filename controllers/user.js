@@ -14,9 +14,11 @@ module.exports.controller = function(app) {
 /**
  * About page route
  */
-  app.get('/login', function(req, res) {
-      // any logic goes here
-      res.render('users/login')
-  });
+	app.post('/login',
+		passport.authenticate('local'),
+		function(req, res) {
+			// If auth is successful
+			res.json(req.user);
+	});
 
 }
