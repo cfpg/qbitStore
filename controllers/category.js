@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var Item = require('../models/item');
+var Item = require('../models/itemModel');
 
 module.exports.controller = function(app) {
 

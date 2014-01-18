@@ -1,59 +1,48 @@
-
-/**
- * Module dependencies.
- */
-
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var fs = require('fs');
-
-// Define the database
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-mongoose.connect('mongodb://qbit:qbit13@linus.mongohq.com:10045/qbitStore');
-
-var app = express();
-
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.bodyParser());
-app.use(express.cookieParser('qbitStore493hfls#423fb3@23%$^%87%noi234buv2'));
-app.use(express.session());
-
-// Passport.js authenthication
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-
-// handleError
-function handleError(e) {
-	return res.send(404, e);
-}
-
-// Config
-app.set('perpage', 10); // pagination - number of items per page
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-// dynamically include routes (Controller)
-fs.readdirSync('./controllers').forEach(function (file) {
-  if(file.substr(-3) == '.js') {
-      route = require('./controllers/' + file);
-      route.controller(app);
-  }
+var express = require('express')
+  , app = express()
+  , db = require('./config/dbschema')
+  , pass = require('./config/pass')
+  , passport = require('passport')
+  , basic_routes = require('./routes/basic')
+  , user_routes = require('./routes/user');
+  
+// configure Express
+app.configure(function() {
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.logger('dev'));
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.session({ secret: 'keyboard cat' }));
+  // Initialize Passport!  Also use passport.session() middleware, to support
+  // persistent login sessions (recommended).
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+  app.use(express.static(__dirname + '/../../public'));
 });
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+
+// Basic pages
+app.get('/', basic_routes.index);
+app.get('/item', function (req, res) { res.send('no'); });
+app.post('/item', basic_routes.item.add);
+app.get('/item/:id', basic_routes.item.view);
+app.post('/item/:id', basic_routes.item.edit);
+app.post('/item/:id/delete', basic_routes.item.delete);
+
+// Category pages
+app.get('/category/:id', basic_routes.category.view);
+
+// User pages
+app.get('/account', pass.ensureAuthenticated, user_routes.account);
+app.get('/login', user_routes.getlogin);
+app.post('/login', user_routes.postlogin);
+app.get('/admin', pass.ensureAuthenticated, pass.ensureAdmin(), user_routes.admin);
+app.get('/logout', user_routes.logout);
+
+app.listen(3000, function() {
+  console.log('Express server listening on port 3000');
 });
+
