@@ -22,7 +22,7 @@ define(function ( require ) {
 	        }, this );
 	    },
 
-	    renderBook: function( item ) {
+	    renderItem: function( item ) {
 	        var itemView = new ItemView({
 	            model: item
 	        });
