@@ -25,9 +25,9 @@ app.configure(function() {
 
 
 // Basic pages
-//app.get('/', basic_routes.index);
-app.get('/', function(req, res) {
-	res.render('qbit.hjs');
+app.get('/', basic_routes.index);
+app.get('/addnew', function(req, res) {
+	res.render('addnew.hjs');
 });
 app.get('/item', function (req, res) { res.send('no'); });
 app.post('/item', basic_routes.item.add);
