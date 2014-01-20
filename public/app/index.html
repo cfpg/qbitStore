@@ -11,28 +11,20 @@
     	<div id="items">
 			<form id="addItem" action="#">
 				<div>
-					<label for="image">CoverImage: </label><input id="coverImage" type="file" />
-					<label for="title">Title: </label><input id="title" type="text" />
-					<label for="author">Author: </label><input id="author" type="text" />
-					<label for="releaseDate">Release date: </label><input id="releaseDate" type="text" />
-					<label for="keywords">Keywords: </label><input id="keywords" type="text" />
+					<label for="name">Name: </label><input id="name" type="text" />
+					<label for="description">Description: </label><input id="description" type="text" />
+					<label for="category">Category: </label><input id="category" type="text" />
+					<label for="cost">Cost: </label><input id="cost" type="text" />
 					<button id="add">Add</button>
 				</div>
 			</form>
     </div>
-    <script id="bookTemplate" type="text/template">
-      <img src="<%= coverImage %>"/>
+    <script id="itemTemplate" type="text/template">
       <ul>
-        <li><%= title %></li>
-        <li><%= author %></li>
-        <li><%= $.format.date( new Date( releaseDate ), 'MMMM yyyy' ) %></li>
-        <li>
-          <% _.each( keywords, function( keyobj ) { %>
-            
-            <%= keyobj.keyword %>
-
-          <% } ); %>
-        </li>
+        <li><%= name %></li>
+        <li><%= description %></li>
+        <li><%= cost %></li>
+        <li><%= category.name %></li>
       </ul>
       <button class="delete">Delete</button>
     </script>

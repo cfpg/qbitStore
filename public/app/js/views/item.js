@@ -6,7 +6,7 @@ define(function ( require ) {
         _ = require( 'underscore' ),
         Backbone = require( 'backbone' );
        
-    return Backbone.Views.extend({
+    return Backbone.View.extend({
 		tagName: 'div',
 		
 		className: 'itemContainer',
