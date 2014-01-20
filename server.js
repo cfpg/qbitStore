@@ -33,7 +33,8 @@ app.post('/item/:id', basic_routes.item.edit);
 app.post('/item/:id/delete', basic_routes.item.delete);
 
 // Category pages
-app.get('/category/:id', basic_routes.category.view);
+app.get('/category', basic_routes.category.list);
+app.get('/category/:id/:p([0-9]*)?', basic_routes.category.view);
 
 // User pages
 app.get('/account', pass.ensureAuthenticated, user_routes.account);

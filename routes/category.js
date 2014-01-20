@@ -1,4 +1,5 @@
 var ItemModel = require('../models/itemModel');
+var CategoryModel = require('../models/categoryModel');
 var mongoose = require('mongoose');
 
 exports.view = function(req, res) {
@@ -12,7 +13,7 @@ exports.view = function(req, res) {
 		} else {
 			
 			items.limit(10);
-			items.sort('-added');
+			items.sort('added');
 			items.exec(function(err, items) {
 				if (err) {
 					res.json(err);
@@ -23,4 +24,17 @@ exports.view = function(req, res) {
 			
 		}
 	})
+}
+
+exports.list = function(req, res) {
+	// List categories
+	var categories = CategoryModel.find({}, function(err, cats) {
+		if (err) {
+			res.json(err);
+		} else {
+			cats.sort('-name');
+		
+			res.json(cats);
+		}
+	});
 }

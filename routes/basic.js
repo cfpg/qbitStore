@@ -1,3 +1,5 @@
+var ItemModel = require('../models/itemModel');
+
 /**
  *	Main routes
  */
