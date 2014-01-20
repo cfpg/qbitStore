@@ -5,8 +5,8 @@ define(function ( require ) {
     var $ = require( 'jquery' ),
         _ = require( 'underscore' ),
         Backbone = require( 'backbone' ),
-        Stock = require( 'collection/stock' ),
-        ItemView = require( 'view/item' );
+        Stock = require( 'collections/stock' ),
+        ItemView = require( 'views/item' );
        
     return Backbone.Views.extend({
         el: '#items',
