@@ -6,6 +6,7 @@ var ItemModel = require('../models/itemModel');
 exports.index = function(req, res) {
 	// Return 10 last items
 	var items = ItemModel.find();
+	items.populate('category');
 	items.limit(10);
 	items.sort('-added');
 	items.exec(function(err, docs) {

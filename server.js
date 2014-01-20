@@ -9,7 +9,7 @@ var express = require('express')
 // configure Express
 app.configure(function() {
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
+  app.set('view engine', 'hjs');
   app.use(express.logger('dev'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
@@ -20,12 +20,15 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + '/../../public'));
+  app.use(express.static(__dirname + 'public'));
 });
 
 
 // Basic pages
-app.get('/', basic_routes.index);
+//app.get('/', basic_routes.index);
+app.get('/', function(req, res) {
+	res.render('qbit.hjs');
+});
 app.get('/item', function (req, res) { res.send('no'); });
 app.post('/item', basic_routes.item.add);
 app.get('/item/:id', basic_routes.item.view);

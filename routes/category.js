@@ -6,7 +6,9 @@ exports.view = function(req, res) {
 	// Show last 10 items by category id
 	var id = req.params.id;
 	
-	var items = ItemModel.find({category: mongoose.Types.ObjectId(id)}, function(err, docs) {
+	var items = ItemModel.find({category: mongoose.Types.ObjectId(id)});
+	items.populate('category');
+	items.exec(function(err, docs) {
 		if (err) {
 			// Error
 			res.json(err);
@@ -23,12 +25,14 @@ exports.view = function(req, res) {
 			});
 			
 		}
-	})
+	});
 }
 
 exports.list = function(req, res) {
 	// List categories
-	var categories = CategoryModel.find({}, function(err, cats) {
+	var categories = CategoryModel.find();
+	categories.populate("items");
+	categories.exec(function(err, cats) {
 		if (err) {
 			res.json(err);
 		} else {

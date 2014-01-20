@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>qbitStore testing</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+		<style type="text/css" media="screen">
+		body {background: #cccccc;font-family: 'Helvetica Neue';}
+		* {margin: 0; padding: 0;}
+		input {outline: none;}
+		
+		#wrapper {
+			background: #fff;
+			margin: 100px auto 0;
+			padding: 10px;
+			width: 640px;
+		}
+		.form {
+			margin: 0;
+			padding: 0;
+		}
+		.form h1 {
+			margin-bottom: 20px;
+		}
+		.form input {
+			border: 1px solid #1a1a1a;
+			display: block;
+			margin-bottom: 20px;
+			padding: 10px;
+		}
+		.form header {
+			margin-bottom: 20px;
+			width: 640px;
+		}
+		.form header input {
+			width: 620px;
+		}
+		.form article {
+			float: left;
+			margin-bottom: 20px;
+			width: 420px;
+		}
+		.form textarea {
+			border: 1px solid #1a1a1a;
+			display: block;
+			padding: 10px;
+			width: 400px;
+		}
+		.form aside {
+			float: right;
+			margin-bottom: 20px;
+			width: 180px;
+		}
+		.form select {
+			margin-bottom: 20px;
+		}
+		.form .submit {
+			background: green;
+			border: 0;
+			color: 333;
+			padding: 10px;
+		}
+		footer {
+			clear: both;
+			margin-top: 40px;
+			width: 640px;
+		}
+		</style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <article>
+      	<form action="http://localhost:3000/item" method="post" class="form">
+					<header>
+						<h1>Add a new item</h1>
+						<p><label>Name: <input type="text" name="item[name]"></label></p>
+					</header>
+					<article>
+						<p><label>Description: <textarea name="item[description]" cols="30" rows="12"></textarea></label></p>
+					</article>
+					<aside>
+						<p><label>Category: <select name="item[category]"><option value="52d9e57d387ed25f49000111">DSLR Cameras</option><option value="52dc6d8a1882107742000021">Paintings</option><option value="52dc6d9e188210e4c200001f">Prints</option></select></label></p>
+						<p><label>Cost: <input type="text" name="item[cost]"></label></p>
+						<p><label>Image: <input type="text" name="item[img]"></label></p>
+						<p><label><input type="submit" class="submit"></label></p>
+					</aside>
+					<div style="clear:both;"></div>
+      	</form>
+      </article>
+      <footer>
+        Copyright (c) 2013
+      </footer>
+    </div>
+  </body>
+</html>
