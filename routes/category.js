@@ -44,7 +44,8 @@ exports.view = function(req, res) {
 }
 
 exports.add = function(req, res) {
-	// List all items in category
+	// Add category to db
+	var cat = CategoryModel.create(req.params.category);
 }
 
 exports.edit = function(req, res) {

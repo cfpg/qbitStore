@@ -11,6 +11,11 @@ app.configure(function() {
   app.use(express.logger('dev'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
+	app.use(function(req, res, next) {
+	      res.header("Access-Control-Allow-Origin", "*");
+	      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	      next();
+	    });
   app.use(express.methodOverride());
   app.use(express.session({ secret: 'keyboard cat' }));
   // Initialize Passport!  Also use passport.session() middleware, to support
@@ -21,16 +26,15 @@ app.configure(function() {
   app.use(express.static(__dirname + 'public'));
 });
 
-
 // Basic pages
-app.get('/', basic_routes.index);
+app.get('/api', basic_routes.index);
 
 // Items pages
-app.get('/items', basic_routes.item.list);
-app.get('/items/:id', basic_routes.item.view);
-app.post('/items', basic_routes.item.add);
-app.put('/items/:id', basic_routes.item.edit);
-app.delete('/items/:id', basic_routes.item.delete);
+app.get('/api/items', basic_routes.item.list);
+app.get('/api/items/:id', basic_routes.item.view);
+app.post('/api/items', basic_routes.item.add);
+app.put('/api/items/:id', basic_routes.item.edit);
+app.delete('/api/items/:id', basic_routes.item.delete);
 
 // Categories pages
 app.get('/categories', basic_routes.category.list);
