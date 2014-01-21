@@ -10,7 +10,8 @@ define(function (require) {
 			description: 'Unknown',
 			category: 'Unknown',
 			cost: 'Unknown'
-		}
+		},
+		urlRoot: 'http://localhost:3000/'
     });
  
 });
