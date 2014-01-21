@@ -52,8 +52,11 @@ app.put('/items/:id', basic_routes.item.edit);
 app.delete('/items/:id', basic_routes.item.delete);
 
 // Category pages
-app.get('/category', basic_routes.category.list);
-app.get('/category/:id/:p([0-9]*)?', basic_routes.category.view);
+app.get('/categories', basic_routes.category.list);
+app.get('/categories/:id/:p([0-9]*)?', basic_routes.category.view);
+app.post('/categories', basic_routes.category.add);
+app.put('/categories/:id', basic_routes.category.edit);
+app.delete('/categories/:id', basic_routes.category.delete);
 
 // User pages
 app.get('/account', pass.ensureAuthenticated, user_routes.account);
