@@ -2,6 +2,21 @@ var ItemModel = require('../models/itemModel');
 var CategoryModel = require('../models/categoryModel');
 var mongoose = require('mongoose');
 
+exports.list = function(req, res) {
+	// List categories
+	var categories = CategoryModel.find();
+	categories.populate("items");
+	categories.exec(function(err, cats) {
+		if (err) {
+			res.json(err);
+		} else {
+			cats.sort('-name');
+		
+			res.json(cats);
+		}
+	});
+}
+
 exports.view = function(req, res) {
 	// Show last 10 items by category id
 	var id = req.params.id;
@@ -28,17 +43,14 @@ exports.view = function(req, res) {
 	});
 }
 
-exports.list = function(req, res) {
-	// List categories
-	var categories = CategoryModel.find();
-	categories.populate("items");
-	categories.exec(function(err, cats) {
-		if (err) {
-			res.json(err);
-		} else {
-			cats.sort('-name');
-		
-			res.json(cats);
-		}
-	});
+exports.add = function(req, res) {
+	// List all items in category
+}
+
+exports.edit = function(req, res) {
+	// Edit a category
+}
+
+exports.delete = function(req,res) {
+	// Delete a category from the database
 }

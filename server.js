@@ -24,13 +24,15 @@ app.configure(function() {
 
 // Basic pages
 app.get('/', basic_routes.index);
+
+// Items pages
 app.get('/items', basic_routes.item.list);
 app.get('/items/:id', basic_routes.item.view);
 app.post('/items', basic_routes.item.add);
 app.put('/items/:id', basic_routes.item.edit);
 app.delete('/items/:id', basic_routes.item.delete);
 
-// Category pages
+// Categories pages
 app.get('/categories', basic_routes.category.list);
 app.get('/categories/:id/:p([0-9]*)?', basic_routes.category.view);
 app.post('/categories', basic_routes.category.add);
