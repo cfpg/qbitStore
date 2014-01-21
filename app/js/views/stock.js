@@ -22,7 +22,7 @@ define(function ( require ) {
 	    },
 
 	     events: {
-        	'click #add': 'addItem'
+        	'submit #addItem': 'addItem'
         },
 
         addItem: function( e ) {
@@ -31,11 +31,13 @@ define(function ( require ) {
         	$( '#addItem div' ).children( 'input' )
         					   .each( function( i, el ) {
         					   		if( $( el ).val() != '' ) {
-        					   			formData[ el.id ] = $( el ).val();
+													if (el.id.length > 0) {
+														formData[el.id] = $(el).val();
+													}
         					   		}
         					   });
 										 console.log(formData);
-        	this.collection.add( new Item( formData ) );
+        	this.collection.create( formData );
 
         },
 

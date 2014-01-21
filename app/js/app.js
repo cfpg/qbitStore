@@ -1,5 +1,3 @@
-'use strict';
-
 require.config({
 	paths: {
 		'jquery': 'vendor/jquery/jquery',
@@ -9,11 +7,12 @@ require.config({
 });
 
 define(function (require) {
+    'use strict';
 	
 	var $ = require('jquery'),
  		Backbone = require('backbone'),
  		StockView = require('views/stock');
 
- 	var stockView = new StockView(items);
+ 	var stockView = new StockView( items );
 
 });

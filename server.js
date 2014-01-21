@@ -12,10 +12,10 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.bodyParser());
 	app.use(function(req, res, next) {
-	      res.header("Access-Control-Allow-Origin", "*");
-	      res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	      next();
-	    });
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		next();
+	});
   app.use(express.methodOverride());
   app.use(express.session({ secret: 'keyboard cat' }));
   // Initialize Passport!  Also use passport.session() middleware, to support
@@ -23,11 +23,14 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + 'public'));
+  app.use(express.static(__dirname + '/app'));
 });
 
 // Basic pages
 app.get('/api', basic_routes.index);
+app.get('/', function(req,res) {
+  res.sendfile('app/index.html');
+});
 
 // Items pages
 app.get('/api/items', basic_routes.item.list);
@@ -37,11 +40,11 @@ app.put('/api/items/:id', basic_routes.item.edit);
 app.delete('/api/items/:id', basic_routes.item.delete);
 
 // Categories pages
-app.get('/categories', basic_routes.category.list);
-app.get('/categories/:id/:p([0-9]*)?', basic_routes.category.view);
-app.post('/categories', basic_routes.category.add);
-app.put('/categories/:id', basic_routes.category.edit);
-app.delete('/categories/:id', basic_routes.category.delete);
+app.get('/api/categories', basic_routes.category.list);
+app.get('/api/categories/:id/:p([0-9]*)?', basic_routes.category.view);
+app.post('/api/categories', basic_routes.category.add);
+app.put('/api/categories/:id', basic_routes.category.edit);
+app.delete('/api/categories/:id', basic_routes.category.delete);
 
 // User pages
 app.get('/account', pass.ensureAuthenticated, user_routes.account);

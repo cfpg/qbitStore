@@ -13,7 +13,10 @@ define(function (require) {
         },
  
         home: function () {
-            console.log('home');
+            require(["views/home"], function (HomeView) {
+                var view = new HomeView({el: $content});
+                view.render();
+            });
         }
  
     });
