@@ -14,6 +14,7 @@ app.configure(function() {
 	app.use(function(req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS, PUT");
 		next();
 	});
   app.use(express.methodOverride());
@@ -37,7 +38,7 @@ app.get('/api/items', basic_routes.item.list);
 app.get('/api/items/:id', basic_routes.item.view);
 app.post('/api/items', basic_routes.item.add);
 app.put('/api/items/:id', basic_routes.item.edit);
-app.delete('/api/items/:id', basic_routes.item.delete);
+app.delete('/api/items', basic_routes.item.delete);
 
 // Categories pages
 app.get('/api/categories', basic_routes.category.list);
