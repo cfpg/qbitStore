@@ -34,8 +34,8 @@ define(function ( require ) {
         					   			formData[ el.id ] = $( el ).val();
         					   		}
         					   });
-										 console.log(formData);
-        	this.collection.add( new Item( formData ) );
+										 
+        	this.collection.create( formData );
 
         },
 
