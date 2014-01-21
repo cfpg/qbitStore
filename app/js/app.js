@@ -13,6 +13,6 @@ define(function (require) {
  		Backbone = require('backbone'),
  		StockView = require('views/stock');
 
- 	var stockView = new StockView(items);
+ 	var stockView = new StockView();
 
 });

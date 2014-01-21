@@ -3,22 +3,110 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <style type="text/css" media="screen">
+    body {background: #cccccc;font-family: 'Helvetica Neue';}
+    * {margin: 0; padding: 0;}
+    input {outline: none;}
+     
+    #wrapper {
+        background: #fff;
+        margin: 100px auto 0;
+        padding: 10px;
+        width: 640px;
+    }
+    .form {
+        margin: 0;
+        padding: 0;
+    }
+    .form h1 {
+        margin-bottom: 20px;
+    }
+    .form input {
+        border: 1px solid #1a1a1a;
+        display: block;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    .form header {
+        margin-bottom: 20px;
+        width: 640px;
+    }
+    .form header input {
+        width: 620px;
+    }
+    .form article {
+        float: left;
+        margin-bottom: 20px;
+        width: 420px;
+    }
+    .form textarea {
+        border: 1px solid #1a1a1a;
+        display: block;
+        padding: 10px;
+        width: 400px;
+    }
+    .form aside {
+        float: right;
+        margin-bottom: 20px;
+        width: 180px;
+    }
+    .form select {
+        margin-bottom: 20px;
+    }
+    .form .submit {
+        background: green;
+        border: 0;
+        color: 333;
+        padding: 10px;
+    }
+    footer {
+        clear: both;
+        margin-top: 40px;
+        width: 640px;
+    }
+		#overlay {
+			background: #fff;
+			margin-left: -320px;
+			position: fixed;
+			top: 0;
+			left: 50%;
+			width: 640px;
+			z-index: 999;
+		}
+		#shadow {
+			background: rgba(0, 0, 0, 0.7);
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 998;
+		}
+    </style>
 		<title>Home</title>
 		<meta name="description" content="">
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-    	<div id="items">
-			<form id="addItem" action="#">
-				<div>
-					<label for="name">Name: </label><input id="name" type="text" name="item[name]" />
-					<label for="description">Description: </label><input id="description" type="text" name="item[description]" />
-					<label for="category">Category: </label><input id="category" type="text" name="item[category]" value="52d9e57d387ed25f49000111" />
-					<label for="cost">Cost: </label><input id="cost" type="text" name="item[cost]" />
-					<input type="submit" value="Add">
-				</div>
-			</form>
-    </div>
+    	<div id="wrapper">
+	    	<div id="items">
+					<form id="addItem" action="#">
+						<div>
+							<label for="name">Name: </label><input id="name" type="text" name="item[name]" />
+							<label for="description">Description: </label><input id="description" type="text" name="item[description]" />
+							<label for="category">Category: </label>
+							<select id="category" type="text" name="item[category]">
+								<option value="52d9e57d387ed25f49000111">DSLR Cameras</option>
+							</select>
+							<label for="cost">Cost: </label><input id="cost" type="text" name="item[cost]" />
+							<input type="submit" value="Add">
+						</div>
+					</form>
+	    	</div>
+    	</div>
+			<div id="overlay"></div>
+			<div id="shadow"></div>
     <script id="itemTemplate" type="text/template">
       <ul>
         <li><%= name %></li>
@@ -27,7 +115,28 @@
         <li><%= category.name %></li>
       </ul>
       <button class="delete">Delete</button>
+			<button class="edit">Edit</button>
     </script>
+		<script id="editItemTemplate" type="text/template">
+    <form action="http://localhost:3000/item" method="post" class="form">
+			<header>
+			    <h1>Edit item</h1>
+			    <p><label>Name: <input type="text" name="item[name]" value="<%= name %>"></label></p>
+			</header>
+			<article>
+			    <p><label>Description: <textarea name="item[description]" cols="30" rows="12"><%= description %></textarea></label></p>
+			</article>
+			<aside>
+			    <p><label>Category:
+					<select name="item[category]">
+					<% _.each(category, function(cat) { %> <option name="<%= cat.id %>"><%= cat.name %></option> <% }) %>
+					</select></label></p>
+			    <p><label>Cost: <input type="text" name="item[cost]" value="<%= cost %>"></label></p>
+			    <p><label><input type="submit" class="submit"></label></p>
+			</aside>
+			<div style="clear:both;"></div>
+    </form>
+		</script>
     <script data-main="js/app.js" src="js/vendor/requirejs/require.js"></script>
     </body>
 </html>

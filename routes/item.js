@@ -70,6 +70,7 @@ exports.edit = function(req, res) {
 		if (err) {
 			res.json(err);
 		} else {
+			res.populate('category');
 			res.json(doc);
 		}
 	});
@@ -80,7 +81,7 @@ exports.delete = function(req, res) {
 		if (err) {
 			res.json(err);
 		} else {
-			console.log(doc);
+			res.populate('category');
 			res.json(doc);
 		}
 	});

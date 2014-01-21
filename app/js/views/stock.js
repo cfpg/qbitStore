@@ -28,7 +28,7 @@ define(function ( require ) {
         addItem: function( e ) {
         	e.preventDefault();
 
-        	$( '#addItem div' ).children( 'input' )
+        	$( '#addItem div' ).children( 'input,select' )
         					   .each( function( i, el ) {
         					   		if( $( el ).val() != '' ) {
 													if (el.id.length > 0) {
@@ -36,7 +36,6 @@ define(function ( require ) {
 													}
         					   		}
         					   });
-										 console.log(formData);
         	this.collection.create( formData );
 
         },
