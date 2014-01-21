@@ -9,28 +9,31 @@ define(function ( require ) {
     return Backbone.View.extend({
 		tagName: 'div',
 		
-		className: 'itemContainer',
+		className: 'categoryContainer',
 		
-		template: $( '#itemTemplate' ).html(),
+		template: $( '#categoryTemplate' ).html(),
 
 		events: {
-			'click .delete': 'deleteItem'
+			'click .delete': 'deleteCategory'
 		},
 
 		// Remove both the model and view
-		deleteItem: function() {
+		deleteCategory: function() {
 			var that = this;
 			
 			this.model.destroy({
 				data: {
 					_id: this.model.attributes._id
 				},
+				
 				processData: true,
-				success: function(model, res) {
+				
+				success: function( model, res ) {
 					that.remove();
 				},
-				error: function(model, res) {
-
+				
+				error: function( model, res ) {
+					console.log(res);
 				}
 			});
 

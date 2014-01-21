@@ -11,8 +11,9 @@ define(function (require) {
 	
 	var $ = require('jquery'),
  		Backbone = require('backbone'),
- 		StockView = require('views/stock');
+ 		Router = require('router'),
+ 		router = new Router();
 
- 	var stockView = new StockView(items);
+ 	Backbone.history.start();
 
 });

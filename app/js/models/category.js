@@ -1,4 +1,4 @@
-// models/item
+// models/category
 define(function (require) {
     'use strict';
  
@@ -18,7 +18,7 @@ define(function (require) {
 		urlRoot: 'http://localhost:3000/api',
 		
 		url: function () {
-			return this.urlRoot + '/items';
+			return this.urlRoot + '/categories';
 		}
     });
  

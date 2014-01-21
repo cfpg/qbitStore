@@ -1,18 +1,18 @@
-// collections/stock
+// collections/categories
 define(function (require) {
     'use strict';
  
     var $ = require('jquery'),
         Backbone = require('backbone'),
-        Item = require('models/item');
+        Category = require('models/category');
        
     return Backbone.Collection.extend({
- 		model: Item,
+ 		model: Category,
 
 		urlRoot: 'http://localhost:3000/api',
  		
  		url: function () {
- 			return this.urlRoot+'/items';
+ 			return this.urlRoot + '/categories';
  		}
     });
  
