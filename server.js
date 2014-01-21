@@ -14,7 +14,7 @@ app.configure(function() {
 	app.use(function(req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-		res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE, PUT");
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS, PUT");
 		next();
 	});
   app.use(express.methodOverride());
@@ -24,18 +24,21 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + 'public'));
+  app.use(express.static(__dirname + '/app'));
 });
 
 // Basic pages
 app.get('/api', basic_routes.index);
+app.get('/', function(req,res) {
+  res.sendfile('app/index.html');
+});
 
 // Items pages
 app.get('/api/items', basic_routes.item.list);
 app.get('/api/items/:id', basic_routes.item.view);
 app.post('/api/items', basic_routes.item.add);
 app.put('/api/items/:id', basic_routes.item.edit);
-app.delete('/api/items/:id', basic_routes.item.delete);
+app.delete('/api/items', basic_routes.item.delete);
 
 // Categories pages
 app.get('/api/categories', basic_routes.category.list);

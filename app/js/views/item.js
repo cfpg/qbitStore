@@ -19,9 +19,20 @@ define(function ( require ) {
 
 		// Remove both the model and view
 		deleteItem: function() {
-			this.model.destroy();
+			var that = this;
+			this.model.destroy({
+				data: {
+					_id: this.model.attributes._id
+				},
+				processData: true,
+				success: function(model, res) {
+					that.remove();
+				},
+				error: function(model, res) {
 
-			this.remove();
+				}
+			});
+
 		},
 
 		render: function() {

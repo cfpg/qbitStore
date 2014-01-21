@@ -76,17 +76,12 @@ exports.edit = function(req, res) {
 }
 
 exports.delete = function(req, res) {
-	var item = ItemModel.findOne({_id: req.body.id}, function(err, doc) {
+	var item = ItemModel.findByIdAndRemove(mongoose.Types.ObjectId(req.body._id), function(err, doc) {
 		if (err) {
 			res.json(err);
 		} else {
-			doc.remove(function(err, item) {
-				if (err) {
-					res.json(err);
-				} else {
-					res.json(item);
-				}
-			});
+			console.log(doc);
+			res.json(doc);
 		}
 	});
 }
