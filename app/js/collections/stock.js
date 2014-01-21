@@ -8,9 +8,9 @@ define(function (require) {
        
     return Backbone.Collection.extend({
  		model: Item,
-		urlRoot: 'http://localhost:3000/',
+		urlRoot: 'http://localhost:3000/api',
  		url: function () {
- 			return this.urlRoot+'api';
+ 			return this.urlRoot+'/items';
  		}
     });
  

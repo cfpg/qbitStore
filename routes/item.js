@@ -29,7 +29,7 @@ exports.view = function(req, res) {
 
 exports.add = function(req, res) {
 	// Add item to db
-	var item = req.body.item;
+	var item = req.body;
 	item.added = Date.now();
 	item.category = mongoose.Types.ObjectId(item.category);
 	

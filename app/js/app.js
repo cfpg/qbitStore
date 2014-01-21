@@ -15,6 +15,4 @@ define(function (require) {
 
  	var stockView = new StockView( items );
 
- 	console.log(stockView);
-
 });

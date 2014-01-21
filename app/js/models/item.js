@@ -11,7 +11,14 @@ define(function (require) {
 			category: 'Unknown',
 			cost: 'Unknown'
 		},
-		urlRoot: 'http://localhost:3000/'
+		urlRoot: 'http://localhost:3000/api',
+		url: function () {
+			return this.urlRoot + '/items';
+		},
+		parse: function( response ) {
+		    response.id = response._id;
+		    return response;
+		}
     });
  
 });
