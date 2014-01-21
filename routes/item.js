@@ -1,6 +1,21 @@
 var ItemModel = require('../models/itemModel');
 var mongoose = require('mongoose');
 
+exports.list = function(req, res) {
+	// Return list of all items
+	var items = ItemModel.find();
+	items.populate("category");
+	items.exec(function(err, items) {
+		if (err) {
+			res.json(err);
+		} else {
+			items.sort('-added');
+		
+			res.json(items);
+		}
+	});
+}
+
 exports.view = function(req, res) {
 	// Return item, find by id
 	var id = req.params.id;

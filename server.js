@@ -26,14 +26,30 @@ app.configure(function() {
 
 // Basic pages
 app.get('/', basic_routes.index);
+
 app.get('/addnew', function(req, res) {
 	res.render('addnew.hjs');
 });
-app.get('/item', function (req, res) { res.send('no'); });
-app.post('/item', basic_routes.item.add);
-app.get('/item/:id', basic_routes.item.view);
-app.post('/item/:id', basic_routes.item.edit);
-app.post('/item/:id/delete', basic_routes.item.delete);
+app.get('/listitems', function(req, res) {
+	var ItemModel = require('./models/itemModel');
+	var items = ItemModel.find();
+	items.populate('category');
+	items.sort('-name');
+	items.exec(function (err, items) {
+		if (err) {
+			res.json(err);
+		} else {
+			app.locals.items = items;
+			res.render('listitems.hjs');
+		}
+	});
+});
+
+app.get('/items', basic_routes.item.list);
+app.get('/items/:id', basic_routes.item.view);
+app.post('/items', basic_routes.item.add);
+app.put('/items/:id', basic_routes.item.edit);
+app.delete('/items/:id', basic_routes.item.delete);
 
 // Category pages
 app.get('/category', basic_routes.category.list);
