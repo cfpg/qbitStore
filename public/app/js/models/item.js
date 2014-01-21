@@ -2,10 +2,9 @@ define(function (require) {
     'use strict';
  
     var $ = require('jquery'),
-        _ = require('underscore'),
         Backbone = require('backbone');
        
-    return Backbone.View.extend({
+    return Backbone.Model.extend({
 		defaults: {
 			name: 'Unknown',
 			description: 'Unknown',

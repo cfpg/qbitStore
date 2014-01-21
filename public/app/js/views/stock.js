@@ -3,18 +3,41 @@ define(function ( require ) {
     'use strict';
  
     var $ = require( 'jquery' ),
-        _ = require( 'underscore' ),
         Backbone = require( 'backbone' ),
         Stock = require( 'collections/stock' ),
-        ItemView = require( 'views/item' );
+        ItemView = require( 'views/item' ),
+        Item = require( 'models/item' ),
+        formData = {};
        
-    return Backbone.Views.extend({
+    return Backbone.View.extend({
         el: '#items',
 
-	    initialize: function( initialItems ) {
-	        this.collection = new Stock( initialItems );
+	    initialize: function() {
+	        this.collection = new Stock();
+            this.collection.fetch({reset: true});
 	        this.render();
+
+	        this.listenTo( this.collection, 'add', this.renderItem );
+            this.listenTo( this.collection, 'reset', this.render );
 	    },
+
+	     events: {
+        	'click #add': 'addItem'
+        },
+
+        addItem: function( e ) {
+        	e.preventDefault();
+
+        	$( '#addItem div' ).children( 'input' )
+        					   .each( function( i, el ) {
+        					   		if( $( el ).val() != '' ) {
+        					   			formData[ el.id ] = $( el ).val();
+        					   		}
+        					   });
+        				   
+        	this.collection.add( new Item( formData ) );
+
+        },
 
 	    render: function() {
 	        this.collection.each( function( item ) {

@@ -3,7 +3,7 @@ define(function ( require ) {
     'use strict';
  
     var $ = require( 'jquery' ),
-        _ = require( 'underscore' ),
+    	_ = require( 'underscore' );
         Backbone = require( 'backbone' );
        
     return Backbone.View.extend({
@@ -11,10 +11,23 @@ define(function ( require ) {
 		
 		className: 'itemContainer',
 		
-		template: _.template( $( '#itemTemplate' ).html() ),
+		template: $( '#itemTemplate' ).html(),
+
+		events: {
+			'click .delete': 'deleteItem'
+		},
+
+		// Remove both the model and view
+		deleteItem: function() {
+			this.model.destroy();
+
+			this.remove();
+		},
 
 		render: function() {
-			this.$el.html( this.template( this.model.toJSON() ) );
+			var tmpl = _.template( this.template );
+			
+			this.$el.html( tmpl( this.model.toJSON() ) );
 
 			return this;
 		}
