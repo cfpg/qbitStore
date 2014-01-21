@@ -8,8 +8,9 @@ define(function (require) {
        
     return Backbone.Collection.extend({
  		model: Item,
+		urlRoot: 'http://localhost:3000/api',
  		url: function () {
- 			return '/items';
+ 			return this.urlRoot+'/items';
  		}
     });
  
