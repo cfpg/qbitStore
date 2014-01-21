@@ -6,7 +6,7 @@ var express = require('express')
   , basic_routes = require('./routes/basic')
   , user_routes = require('./routes/user');
   
-// configure Express
+// Configure Express
 app.configure(function() {
   app.use(express.logger('dev'));
   app.use(express.cookieParser());

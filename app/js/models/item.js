@@ -1,3 +1,4 @@
+// models/item
 define(function (require) {
     'use strict';
  
@@ -11,8 +12,11 @@ define(function (require) {
 			category: 'Unknown',
 			cost: 'Unknown'
 		},
+
 		idAttribute: "_id",
+		
 		urlRoot: 'http://localhost:3000/api',
+		
 		url: function () {
 			return this.urlRoot + '/items';
 		}

@@ -4,21 +4,33 @@ define(function (require) {
  
     var $ = require('jquery'),
         Backbone = require('backbone'),
-        $content = $("#content");
+        StockView = require('views/stock'),
+        CategoriesView = require('views/categories'),
+        SingleView = require('views/single');
  
     return Backbone.Router.extend({
  
         routes: {
-            '': 'home'
+            '': 'stock',
+            'categories': 'categories',
+            'items/id': 'item'
         },
  
-        home: function () {
-            require(["views/home"], function (HomeView) {
-                var view = new HomeView({el: $content});
-                view.render();
-            });
-        }
- 
+        stock: function() {
+            var stockView = new StockView();
+                stockView.render();
+            
+        },
+
+        categories: function() {
+            var CategoryView = new CategoryView();
+                CategoryView.render();
+        },
+
+        single: function() {
+            var singleView = new SingleView();
+                singleView.render();
+        } 
     });
  
 });
